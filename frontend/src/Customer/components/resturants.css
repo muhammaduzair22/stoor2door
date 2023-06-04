@@ -1,0 +1,28 @@
+.abc{
+    font-size: 35px ;
+    text-align: center;
+  }
+
+
+.zoom {
+  padding: 40px;
+  transition: transform .2s; /* Animation */
+ 
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+.p{
+  font-size: 20px;
+  color: black;
+  text-align: center;
+
+}
+
+.image{
+  align-items: center;
+  text-align: center;
+
+}
