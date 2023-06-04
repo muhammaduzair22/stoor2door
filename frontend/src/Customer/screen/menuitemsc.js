@@ -9,7 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 function Menuitemsc() {
 
     const name = window.location.href.split('/').pop();
-
+    console.log(name)
     const [listOfrestaurantsmenuitems, setListOfrestaurantsmenuitems] = useState([]);
 
     useEffect(() => {

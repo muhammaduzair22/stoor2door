@@ -4,6 +4,7 @@ import axios from "axios";
 import "./Home.css";
 import Filter from "../components/filter";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [listOfrestaurants, setListOfrestaurants] = useState([]);
@@ -40,13 +41,13 @@ function Home() {
         {filteredProductList.map((resturant) => {
           return (
             <div className="col-md-4 p-3">
-              <NavLink to={`/menuitemsc/${resturant.restaurantName}`}>
+              <Link to={`/menuitemsc/${resturant.restaurantName}`} >
                 <div className="m-5 shadow-lg p-3 mb-5 bg-white rounded">
                   <div className="zoom">
                     <Resturants resturant={resturant} />
                   </div>
                 </div>
-              </NavLink>
+              </Link>
             </div>
           );
         })}

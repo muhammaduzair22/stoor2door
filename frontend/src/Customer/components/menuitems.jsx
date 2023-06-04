@@ -29,7 +29,7 @@ export default function Menuitem({ menuitem }) {
                     </select>
                 </div>
             </div>
-            <div className="m-1 w-100">
+            <div className="m-1 w-100 button">
                 <button className="btn">ADD TO CART</button>
             </div>
             <Modal show={show}>

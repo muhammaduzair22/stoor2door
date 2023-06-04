@@ -35,14 +35,16 @@ const navbar = () => {
                             </h1>
                         </a>
                         <div className="navbar-nav mr-auto py-0">
-                            <a href="/Contact" className="nav-item nav-link">
-                                Contact
+
+                            <a href="https://www.google.com/maps/place/FAST+National+University+of+Computer+and+Emerging+Sciences,+Islamabad+Campus/@33.6565377,73.0131881,17z/data=!3m1!4b1!4m5!3m4!1s0x38dfbe1faaaaaaab:0x223386a2985e88f4!8m2!3d33.6565377!4d73.0153768" className="nav-item nav-link">
+                                Track
                             </a>
+
                             <a href="/Cart" className="nav-item nav-link">
                                 Cart
                             </a>
-                            <a href="https://www.google.com/maps/place/FAST+National+University+of+Computer+and+Emerging+Sciences,+Islamabad+Campus/@33.6565377,73.0131881,17z/data=!3m1!4b1!4m5!3m4!1s0x38dfbe1faaaaaaab:0x223386a2985e88f4!8m2!3d33.6565377!4d73.0153768" className="nav-item nav-link">
-                                Track
+                            <a href="/login" className="nav-item nav-link">
+                                Login
                             </a>
                         </div>
                     </div>

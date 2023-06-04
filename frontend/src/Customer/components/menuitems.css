@@ -10,7 +10,9 @@
 .zoom {
   padding: 40px;
   transition: transform .2s; /* Animation */
- 
+  align-items: center;
+  text-align: center;
+
   margin: 0 auto;
 }
 
@@ -24,6 +26,14 @@
   background-color: tomato !important;
   color: rgb(255, 255, 255) !important;
 
+}
+.button{
+  align-items: center;
+text-align: center;
+
+}
+.btn:hover {
+  transform: scale(1.1); 
 }
 
 .box {
