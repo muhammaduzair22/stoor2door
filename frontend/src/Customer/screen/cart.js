@@ -1,16 +1,30 @@
-import { useState, useEffect } from "react";
-import Menuitem from "../components/menuitems";
+import { useState, useEffect, useContext } from "react";
+import Cartitem from "../components/cartitems";
 import axios from "axios";
-import "./menuitemsc.css";
+import "./cart.css";
 import SearchBar from "../components/filter";
 import { NavLink, useNavigate } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
+import { CartContext } from '../screen/cartContext';
 
-function Menuitemsc() {
-
+function Cart() {
+    const navigate = useNavigate();
     const name = window.location.href.split('/').pop();
     console.log(name)
     const [listOfrestaurantsmenuitems, setListOfrestaurantsmenuitems] = useState([]);
+    const { getItems } = useContext(CartContext);
+    let checkLogined = false
+    const item = getItems();
+    console.log(item);
+    const token = localStorage.getItem('token');
+    token == null ? checkLogined = false : checkLogined = true;
+    console.log(checkLogined)
+    const logout = () => {
+        alert("you are not logedin ")
+        navigate('/login')
+    }
+
+
 
     useEffect(() => {
         axios.get("http://localhost:3001/getresturantmenuitem").then((response) => {
@@ -18,13 +32,13 @@ function Menuitemsc() {
         })
     }, [])
     var temp = listOfrestaurantsmenuitems.filter(check);
-    // console.log(temp);
 
     // const [array, setarray] = useState([]);
     var array = [];
     return (
 
         <div data-testid="menuitemsc">
+            {checkLogined === false ? logout() : <></>}
             <br />
             {/* <SearchBar placeholder="Enter item name.." data={temp} /> */}
             {/* <div className="dashboard-item"></div> */}
@@ -37,21 +51,23 @@ function Menuitemsc() {
             </div>
 
             <div className="row">
-                {array.map(menuitem => {
+                {item.map(menuitem => {
                     return <div className="col-md-4 p-3">
                         <div className="m-5 shadow-lg p-3 mb-5 bg-white rounded">
                             <div>
-                                <Menuitem menuitem={menuitem} />
+                                <Cartitem menuitem={menuitem} />
                             </div>
                         </div>
                     </div>
                 })}
             </div>
+            <div className="bt">
+                <button className="btn">Proceed To Checkout</button>
+            </div>
 
         </div>
     );
     function check(listOfrestaurantsmenuitems) {
-        // console.log(listOfrestaurantsmenuitems);
         return listOfrestaurantsmenuitems.restaurantName === name;
     }
     function Searchbar() {
@@ -65,7 +81,7 @@ function Menuitemsc() {
                         if (query === '') {
                             // array.length = 0;
                             array.push(post);
-                            // console.log(array);
+                            console.log(array);
                             // return post;
                         }
 
@@ -88,4 +104,4 @@ function Menuitemsc() {
     }
 
 };
-export default Menuitemsc;
+export default Cart;

@@ -4,41 +4,23 @@ import "./login.css"
 
 import axios from "axios";
 
-const LoginPage = (props) => {
+const LoginPage = () => {
   let navigate = useNavigate();
-  // const [loginResName, setloginResName] = useState("false");
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
-
-  const usernameHandeler = (event) => {
-    setUserName(event.target.value);
-  };
-  const passwordHandler = (event) => {
-    setPassword(event.target.value);
-  };
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const loginHandler = async (e) => {
-    e.preventDefault();
-
-    // try {
-    //   const response = await axios.post('/api/login', { email, password });
-
-    //   // Handle successful login response
-    //   console.log('Login successful:', response.data);
-
-    //   // Reset form fields
-    //   setEmail('');
-    //   setPassword('');
-    //   setErrorMessage('');
-    // } catch (error) {
-    //   // Handle error response from the API
-    //   console.error('Login error:', error.response.data);
-    //   setErrorMessage('Invalid email or password');
-    // }
-  };
-
-  const admin = () => {
-    console.log("Admin");
+    axios.post('http://localhost:3001/user/login', {
+      "username": username,
+      "password": password
+    }).then(res => {
+      alert('Login successful');
+      localStorage.setItem('token', res.data);
+      console.log('Response:', res.data);
+      navigate('/home');
+    }).catch(err => {
+      alert("Invalid Credentails")
+    })
   };
 
   return (
@@ -56,7 +38,7 @@ const LoginPage = (props) => {
             <input
               type="text"
               placeholder="Username"
-              onChange={usernameHandeler}
+              onChange={(e) => setUsername(e.target.value)}
             ></input>
             <br />
             <br />
@@ -65,7 +47,7 @@ const LoginPage = (props) => {
             <input
               type="password"
               placeholder="password"
-              onChange={passwordHandler}
+              onChange={(e) => setPassword(e.target.value)}
             ></input>
           </div>
           <br />
@@ -78,7 +60,7 @@ const LoginPage = (props) => {
           <br />
           <br />
           <button className="button-34" onClick={loginHandler}>
-            Submit
+            LogIn
           </button>
         </div>
       </div>

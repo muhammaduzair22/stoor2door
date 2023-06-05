@@ -1,9 +1,23 @@
-import React from "react";
+import { useState, useEffect, useContext } from "react";
 import "./navbar.css";
+import { CartContext } from '../screen/cartContext';
 
-const navbar = () => {
+const Navbar = () => {
+    const { getItems } = useContext(CartContext);
+    const [isClicked, setIsClicked] = useState(false);
+    const token = localStorage.getItem('token');
+    const item = getItems();
+    const itemCount = item.length;
+
+    const handleClick = () => {
+        setIsClicked(true);
+        localStorage.removeItem('token')
+        alert('Logged Out')
+    };
+
     return (
         <div data-testid="navbar" className="container-fluid position-relative nav-bar p-0">
+
 
             <div className="container-lg position-relative p-0 px-lg-3">
                 <nav className="navbar navbar-expand-lg bg-white navbar-light shadow p-lg-0">
@@ -40,12 +54,25 @@ const navbar = () => {
                                 Track
                             </a>
 
-                            <a href="/Cart" className="nav-item nav-link">
+                            <a href="/cart" className="nav-item nav-link" >
                                 Cart
                             </a>
-                            <a href="/login" className="nav-item nav-link">
-                                Login
+                            <a className="cart-icon-container" >
+                                <i className="fas fa-shopping-cart"></i>
+                                {itemCount > 0 && <span className="notification-dot">{itemCount}</span>}
                             </a>
+                            {
+                                token !== null ?
+
+                                    <a onClick={handleClick} className="nav-item nav-link">
+                                        Logout
+                                    </a>
+                                    :
+                                    <a href="/login" className="nav-item nav-link">
+                                        Login
+                                    </a>
+                            }
+
                         </div>
                     </div>
                 </nav>
@@ -55,4 +82,4 @@ const navbar = () => {
     );
 };
 
-export default navbar;
+export default Navbar;

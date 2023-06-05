@@ -3,23 +3,15 @@ import "./menuitems.css";
 import { Modal } from 'react-bootstrap';
 import { CartContext } from '../screen/cartContext';
 
-export default function Menuitem({ menuitem }) {
+export default function Cartitem({ menuitem }) {
     const [quantity, setQuantity] = useState(1);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const { addToCart, clearCart } = useContext(CartContext);
-    const { getItems } = useContext(CartContext);
-
-    const item = getItems();
-    console.log(item);
-
-    const handleAddToCart = () => {
-        addToCart(menuitem);
-        console.log("aaa" + menuitem)
+    const { removeFromCart } = useContext(CartContext);
+    const handleRemoveItem = (itemId) => {
+        removeFromCart(itemId);
     };
-
-
     return (
         <div>
             <h1 className="abc">{menuitem.itemName}</h1>
@@ -43,7 +35,7 @@ export default function Menuitem({ menuitem }) {
                 </div>
             </div>
             <div className="m-1 w-100 butt">
-                <button className="btn" onClick={handleAddToCart} >ADD TO CART</button>
+                <button className="btn" onClick={() => handleRemoveItem(menuitem.itemName)} >Delete</button>
             </div>
             <Modal show={show}>
                 <Modal.Header closeButton>

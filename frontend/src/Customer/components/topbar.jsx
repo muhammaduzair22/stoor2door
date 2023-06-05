@@ -1,5 +1,11 @@
 import React from "react";
 import "./topbar.css";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faFacebook, faTwitter, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faFacebook, faTwitter, faInstagram);
 
 const topbar = () => {
     return (
@@ -19,19 +25,19 @@ const topbar = () => {
                         <div className="col-md-6 text-center text-lg-right">
                             <div className="d-inline-flex align-items-center">
                                 <a className="text-white px-3" href="">
-                                    <i className="fab fa-facebook-f"></i>
+                                    <FontAwesomeIcon icon={faFacebook} />
                                 </a>
                                 <a className="text-white px-3" href="">
-                                    <i className="fab fa-twitter"></i>
+                                    <FontAwesomeIcon icon={faTwitter} />
                                 </a>
                                 <a className="text-white px-3" href="">
-                                    <i className="fab fa-linkedin-in"></i>
+                                    <FontAwesomeIcon icon={faInstagram} />
                                 </a>
                                 <a className="text-white px-3" href="">
-                                    <i className="fab fa-instagram"></i>
+                                    <FontAwesomeIcon icon={faYoutube} />
                                 </a>
-                                <a className="text-white pl-3" href="">
-                                    <i className="fab fa-youtube"></i>
+                                <a className="text-white pl-3 user" href="/profile">
+                                    <FontAwesomeIcon icon={faUser} />
                                 </a>
                             </div>
                         </div>
