@@ -16,9 +16,9 @@ const CheckoutPage = () => {
 
     const [orderDetails, setOrderDetails] = useState({
         items: [
-            { id: 1, name: 'Product 1', price: 10 },
-            { id: 2, name: 'Product 2', price: 20 },
-            { id: 3, name: 'Product 3', price: 30 },
+            { id: 1, name: 'LOADED NASHVILLE FRIES', price: 750 },
+            { id: 2, name: 'Nashville Hot', price: 450 },
+            { id: 3, name: 'Twister', price: 360 },
         ],
     });
 
@@ -44,9 +44,9 @@ const CheckoutPage = () => {
         });
     };
     const orderItems = [
-        { id: 1, name: 'Product 1', price: 10 },
-        { id: 2, name: 'Product 2', price: 20 },
-        { id: 3, name: 'Product 3', price: 30 },
+        { id: 1, name: 'LOADED NASHVILLE FRIES', price: 750 },
+        { id: 2, name: 'Nashville Hot', price: 450 },
+        { id: 3, name: 'Twister', price: 360 },
     ];
     const getTotalPrice = () => {
         return orderItems.reduce((total, item) => total + item.price, 0);
@@ -154,7 +154,7 @@ const CheckoutPage = () => {
                             required
                         />
                     </div>
-                    <button type="submit" onClick={handleclick()}>Place Order</button>
+                    <button onClick={handleclick()}>Place Order</button>
                 </form>
             </div>
         </div>

@@ -1,5 +1,5 @@
 .payment-container {
-    max-width: 100px;
+    max-width: 600px;
     margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
@@ -10,8 +10,8 @@
   .payment-form {
     display: flex;
     flex-direction: column;
-    max-width: 600px;
-    margin-left:450px;
+    /* max-width: 600px;
+    margin-left:450px; */
 
   }
   

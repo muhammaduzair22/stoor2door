@@ -1,7 +1,10 @@
 
 import React, { useState } from 'react';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import { CardElement, useStripe, useElements, Elements } from '@stripe/react-stripe-js';
 import './payment.css';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe('YOUR_STRIPE_PUBLIC_KEY');
 
 const Payment = () => {
     const stripe = useStripe();
@@ -64,5 +67,10 @@ const Payment = () => {
         </div>
     );
 };
+const StripePaymentWrapper = () => (
+    <Elements stripe={stripePromise}>
+        <Payment />
+    </Elements>
+);
 
-export default Payment;
+export default StripePaymentWrapper;
