@@ -3,7 +3,9 @@
   margin: auto;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 20px;
+  background-color: #de6da4;
+  color: #fff;
 }
 
 h2 {

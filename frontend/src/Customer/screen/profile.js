@@ -21,11 +21,13 @@ function UserProfile() {
             try {
                 const response = await axios.get('http://localhost:3001/getuser', {
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        token: token,
                     },
                 });
 
-                setUserData(response.data);
+                await setUserData(response.data);
+                console.log(response.data)
+
             } catch (error) {
                 console.log('Error fetching user data:', error);
             }
@@ -33,7 +35,6 @@ function UserProfile() {
 
         if (token) {
             fetchUserData();
-            console.log(userData)
         }
     }, []);
 
@@ -56,15 +57,16 @@ function UserProfile() {
             [name]: value,
         }));
     };
+    console.log(userData)
 
     const handleSaveClick = async () => {
         const id = userData._id;
         try {
             const token = localStorage.getItem('token'); // Assuming you have stored the token in localStorage
 
-            const response = await axios.put(`http://localhost:3001/getuser/update${id}`, updatedUserData, {
+            const response = await axios.post(`http://localhost:3001/user/update/${id}`, updatedUserData, {
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    token: token,
                 },
             });
 

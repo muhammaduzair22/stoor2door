@@ -14,9 +14,8 @@ const LoginPage = () => {
       "username": username,
       "password": password
     }).then(res => {
-      alert('Login successful');
-      localStorage.setItem('token', res.data);
-      console.log('Response:', res.data);
+      localStorage.setItem('token', res.data.token);
+      console.log('Response:', res.data.token);
       navigate('/home');
     }).catch(err => {
       alert("Invalid Credentails")

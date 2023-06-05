@@ -7,6 +7,8 @@ import Signup from '../src/Customer/screen/signup'
 import Login from '../src/Customer/screen/login'
 import Cart from '../src/Customer/screen/cart'
 import Profile from '../src/Customer/screen/profile'
+import Checkout from '../src/Customer/screen/checkout'
+import Payment from '../src/Customer/screen/payment'
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "../src/Customer/components/navbar";
@@ -29,6 +31,8 @@ function App() {
             <Route path="/menuitemsc/:type" element={<Menuitem />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/payment" element={<Payment />} />
           </Routes>
         </BrowserRouter>
         <br></br>

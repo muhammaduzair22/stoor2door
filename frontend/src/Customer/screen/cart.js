@@ -24,7 +24,9 @@ function Cart() {
         navigate('/login')
     }
 
-
+    const handleclick = () => {
+        navigate('/checkout')
+    }
 
     useEffect(() => {
         axios.get("http://localhost:3001/getresturantmenuitem").then((response) => {
@@ -62,7 +64,7 @@ function Cart() {
                 })}
             </div>
             <div className="bt">
-                <button className="btn">Proceed To Checkout</button>
+                <button className="btn" onClick={handleclick()}>Proceed To Checkout</button>
             </div>
 
         </div>
