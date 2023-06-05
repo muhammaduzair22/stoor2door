@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import './checkout.css';
+import { NavLink, useNavigate } from "react-router-dom";
 
 const CheckoutPage = () => {
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -48,6 +51,10 @@ const CheckoutPage = () => {
     const getTotalPrice = () => {
         return orderItems.reduce((total, item) => total + item.price, 0);
     }
+    const handleclick = () => {
+        navigate('/payment')
+    }
+
     return (
         <div className="checkout-page">
             {/* <div className="receipt">
@@ -147,7 +154,7 @@ const CheckoutPage = () => {
                             required
                         />
                     </div>
-                    <button type="submit">Place Order</button>
+                    <button type="submit" onClick={handleclick()}>Place Order</button>
                 </form>
             </div>
         </div>

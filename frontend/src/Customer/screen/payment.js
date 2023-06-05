@@ -1,16 +1,68 @@
-import React from 'react';
-import { Elements } from 'react-stripe-elements';
-import PaymentForm from './PaymentForm';
 
-const PaymentPage = () => {
+import React, { useState } from 'react';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import './payment.css';
+
+const Payment = () => {
+    const stripe = useStripe();
+    const elements = useElements();
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handlePaymentSubmit = async (event) => {
+        event.preventDefault();
+
+        if (!stripe || !elements) {
+            return;
+        }
+
+        const cardElement = elements.getElement(CardElement);
+
+        try {
+            const { error, paymentMethod } = await stripe.createPaymentMethod({
+                type: 'card',
+                card: cardElement,
+            });
+
+            if (error) {
+                setErrorMessage(error.message);
+                return;
+            }
+
+            // Process the payment method or perform other actions
+            console.log(paymentMethod);
+        } catch (error) {
+            console.error('Error:', error);
+            setErrorMessage('An error occurred during payment. Please try again.');
+        }
+    };
+
     return (
-        <div className="payment-page">
-            <h2>Payment Page</h2>
-            <Elements>
-                <PaymentForm />
-            </Elements>
+        <div>
+            <div className="payment-container">
+                <h2>Payment Details</h2>
+                <form onSubmit={handlePaymentSubmit} className="payment-form">
+                    <div className="form-group">
+                        <label htmlFor="card-element">Card Details</label>
+                        <div className="card-element-container">
+                            <CardElement id="card-element" className="card-element" options={{
+                                style: {
+                                    base: {
+                                        fontSize: '16px',
+                                        fontFamily: 'Arial, sans-serif',
+                                        '::placeholder': {
+                                            color: '#aab7c4',
+                                        },
+                                    },
+                                },
+                            }} />
+                        </div>
+                    </div>
+                    {errorMessage && <div className="error-message">{errorMessage}</div>}
+                    <button type="submit" className="pay-button">Pay</button>
+                </form>
+            </div>
         </div>
     );
 };
 
-export default PaymentPage;
+export default Payment;
